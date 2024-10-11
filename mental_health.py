@@ -21,7 +21,7 @@ df = pd.DataFrame(data)
 client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 # Function to count tokens using tiktoken
-def count_tokens(text, model="gpt-4o"):
+def count_tokens(text, model="gpt-4o-mini"):
     enc = tiktoken.encoding_for_model(model)
     tokens = enc.encode(text)
     return len(tokens)
@@ -54,7 +54,7 @@ def generate_ai_response(response_type, user_input):
 
     # Get response from OpenAI
     completion = client.chat.completions.create(
-        model="gpt-4o",
+        model="gpt-4o-mini",
         messages=[
             {"role": "system", "content": system_message},
             {"role": "user", "content": prompt}
